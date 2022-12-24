@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BookStoreADOAPI.Models.Stock>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.isbn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Published_year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Retail_price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.isbn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publisher_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Published_year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Retail_price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.STOCK_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.STOCK_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.STOCK_ID })
+        </td>
+    </tr>
+}
+
+</table>

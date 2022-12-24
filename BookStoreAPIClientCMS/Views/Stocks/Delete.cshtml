@@ -1,0 +1,138 @@
+﻿@model BookStoreAPIClientCMS.Models.Stocks
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Book Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Stocks")">Books</a></li>
+                    <li class="breadcrumb-item active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Tổng quan</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.isbn)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.isbn, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Title_name)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Title_name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Author_name)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Author_name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-6">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Chi tiết</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Publisher_name)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Publisher_name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Published_year)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Published_year, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Supplier_ID)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Supplier_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text w-25">
+                            @Html.DisplayNameFor(model => model.Retail_price)
+                        </span>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Retail_price, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="@Url.Action("Index","Stocks")" class="btn btn-secondary">Cancel</a>
+            <div class="float-right">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(p => p.STOCK_ID)
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- /.content -->

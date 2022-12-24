@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BOOKSTOREModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="55" />
+          <Property Name="Last_name" Type="varchar" MaxLength="55" />
+          <Property Name="Customer_City" Type="varchar" MaxLength="55" />
+          <Property Name="Customer_Street" Type="varchar" MaxLength="55" />
+          <Property Name="Customer_PCode" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Customer_email" Type="varchar" MaxLength="55" />
+          <Property Name="Customer_phone" Type="varchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login_Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order_Items">
+          <Key>
+            <PropertyRef Name="Item_ID" />
+          </Key>
+          <Property Name="Item_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Order_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Stock_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="isbn" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Supplier_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Retail_Price" Type="varchar" MaxLength="55" />
+          <Property Name="Qty_sold" Type="varchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Customer_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Order_Date" Type="varchar" MaxLength="55" />
+          <Property Name="Credit_card_numb" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Credit_card_expiry" Type="varchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Returns">
+          <Key>
+            <PropertyRef Name="Return_ID" />
+          </Key>
+          <Property Name="Return_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Item_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Stock_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Retail_Price" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="Stocks">
+          <Key>
+            <PropertyRef Name="STOCK_ID" />
+          </Key>
+          <Property Name="STOCK_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="isbn" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Author_name" Type="varchar" MaxLength="55" />
+          <Property Name="Title_name" Type="varchar" MaxLength="55" />
+          <Property Name="Publisher_name" Type="varchar" MaxLength="55" />
+          <Property Name="Published_year" Type="varchar" MaxLength="55" />
+          <Property Name="Supplier_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Retail_price" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Supplier_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Stock_ID" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Supplier_name" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Supplier_City" Type="varchar" MaxLength="55" />
+          <Property Name="Supplier_Street" Type="varchar" MaxLength="55" />
+          <Property Name="Supplier_PCode" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Supplier_email" Type="varchar" MaxLength="55" />
+          <Property Name="Supplier_phone" Type="varchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Order_Ite__Order__412EB0B6">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Ite__Stock__4316F928">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Ite__Suppl__4222D4EF">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Supplier_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Customer__403A8C7D">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Returns__Item_ID__44FF419A">
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="1" />
+          <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Items">
+              <PropertyRef Name="Item_ID" />
+            </Principal>
+            <Dependent Role="Returns">
+              <PropertyRef Name="Item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Returns__Stock_I__45F365D3">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Returns">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Suppliers__Stock__440B1D61">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Suppliers">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BOOKSTOREModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login_Tokens" EntityType="Self.Login_Tokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Items" EntityType="Self.Order_Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Returns" EntityType="Self.Returns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stocks" EntityType="Self.Stocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Order_Ite__Order__412EB0B6" Association="Self.FK__Order_Ite__Order__412EB0B6">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Ite__Stock__4316F928" Association="Self.FK__Order_Ite__Stock__4316F928">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Ite__Suppl__4222D4EF" Association="Self.FK__Order_Ite__Suppl__4222D4EF">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Customer__403A8C7D" Association="Self.FK__Orders__Customer__403A8C7D">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Returns__Item_ID__44FF419A" Association="Self.FK__Returns__Item_ID__44FF419A">
+            <End Role="Order_Items" EntitySet="Order_Items" />
+            <End Role="Returns" EntitySet="Returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Returns__Stock_I__45F365D3" Association="Self.FK__Returns__Stock_I__45F365D3">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Returns" EntitySet="Returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Suppliers__Stock__440B1D61" Association="Self.FK__Suppliers__Stock__440B1D61">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Suppliers" EntitySet="Suppliers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BOOKSTOREModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Last_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_City" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Street" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_PCode" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_email" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_phone" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login_Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order_Items">
+          <Key>
+            <PropertyRef Name="Item_ID" />
+          </Key>
+          <Property Name="Item_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Order_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stock_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isbn" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supplier_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Retail_Price" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Qty_sold" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Order_Date" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Credit_card_numb" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Credit_card_expiry" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Returns">
+          <Key>
+            <PropertyRef Name="Return_ID" />
+          </Key>
+          <Property Name="Return_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Item_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stock_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Retail_Price" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Stocks">
+          <Key>
+            <PropertyRef Name="STOCK_ID" />
+          </Key>
+          <Property Name="STOCK_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isbn" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Title_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Publisher_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Published_year" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Retail_price" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Supplier_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stock_ID" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supplier_name" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supplier_City" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier_Street" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier_PCode" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supplier_email" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier_phone" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Orders__Customer__403A8C7D">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Ite__Order__412EB0B6">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Ite__Stock__4316F928">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Ite__Suppl__4222D4EF">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Supplier_ID" />
+            </Principal>
+            <Dependent Role="Order_Items">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Returns__Item_ID__44FF419A">
+          <End Role="Order_Items" Type="Self.Order_Items" Multiplicity="1" />
+          <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Items">
+              <PropertyRef Name="Item_ID" />
+            </Principal>
+            <Dependent Role="Returns">
+              <PropertyRef Name="Item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Returns__Stock_I__45F365D3">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Returns" Type="Self.Returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Returns">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Suppliers__Stock__440B1D61">
+          <End Role="Stocks" Type="Self.Stocks" Multiplicity="1" />
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stocks">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Suppliers">
+              <PropertyRef Name="Stock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Login_Tokens" EntityType="Self.Login_Tokens" />
+          <EntitySet Name="Order_Items" EntityType="Self.Order_Items" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Returns" EntityType="Self.Returns" />
+          <EntitySet Name="Stocks" EntityType="Self.Stocks" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Orders__Customer__403A8C7D" Association="Self.FK__Orders__Customer__403A8C7D">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Ite__Order__412EB0B6" Association="Self.FK__Order_Ite__Order__412EB0B6">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Ite__Stock__4316F928" Association="Self.FK__Order_Ite__Stock__4316F928">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Ite__Suppl__4222D4EF" Association="Self.FK__Order_Ite__Suppl__4222D4EF">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Order_Items" EntitySet="Order_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Returns__Item_ID__44FF419A" Association="Self.FK__Returns__Item_ID__44FF419A">
+            <End Role="Order_Items" EntitySet="Order_Items" />
+            <End Role="Returns" EntitySet="Returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Returns__Stock_I__45F365D3" Association="Self.FK__Returns__Stock_I__45F365D3">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Returns" EntitySet="Returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Suppliers__Stock__440B1D61" Association="Self.FK__Suppliers__Stock__440B1D61">
+            <End Role="Stocks" EntitySet="Stocks" />
+            <End Role="Suppliers" EntitySet="Suppliers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BOOKSTOREModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+                <ScalarProperty Name="Customer_Street" ColumnName="Customer_Street" />
+                <ScalarProperty Name="Customer_PCode" ColumnName="Customer_PCode" />
+                <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
+                <ScalarProperty Name="Customer_phone" ColumnName="Customer_phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login_Tokens">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Login_Tokens">
+              <MappingFragment StoreEntitySet="Login_Tokens">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Items">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Order_Items">
+              <MappingFragment StoreEntitySet="Order_Items">
+                <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Retail_Price" ColumnName="Retail_Price" />
+                <ScalarProperty Name="Qty_sold" ColumnName="Qty_sold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Credit_card_numb" ColumnName="Credit_card_numb" />
+                <ScalarProperty Name="Credit_card_expiry" ColumnName="Credit_card_expiry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Returns">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Returns">
+              <MappingFragment StoreEntitySet="Returns">
+                <ScalarProperty Name="Return_ID" ColumnName="Return_ID" />
+                <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+                <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+                <ScalarProperty Name="Retail_Price" ColumnName="Retail_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Stocks">
+              <MappingFragment StoreEntitySet="Stocks">
+                <ScalarProperty Name="STOCK_ID" ColumnName="STOCK_ID" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="Author_name" ColumnName="Author_name" />
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Publisher_name" ColumnName="Publisher_name" />
+                <ScalarProperty Name="Published_year" ColumnName="Published_year" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Retail_price" ColumnName="Retail_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+                <ScalarProperty Name="Supplier_name" ColumnName="Supplier_name" />
+                <ScalarProperty Name="Supplier_City" ColumnName="Supplier_City" />
+                <ScalarProperty Name="Supplier_Street" ColumnName="Supplier_Street" />
+                <ScalarProperty Name="Supplier_PCode" ColumnName="Supplier_PCode" />
+                <ScalarProperty Name="Supplier_email" ColumnName="Supplier_email" />
+                <ScalarProperty Name="Supplier_phone" ColumnName="Supplier_phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BOOKSTOREModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

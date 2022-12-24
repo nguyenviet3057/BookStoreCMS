@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BOOKSTOREModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Customer_City" ColumnName="Customer_City" />
+          <ScalarProperty Name="Customer_Street" ColumnName="Customer_Street" />
+          <ScalarProperty Name="Customer_PCode" ColumnName="Customer_PCode" />
+          <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
+          <ScalarProperty Name="Customer_phone" ColumnName="Customer_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login_Tokens">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Login_Tokens">
+        <MappingFragment StoreEntitySet="Login_Tokens">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Items">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Order_Items">
+        <MappingFragment StoreEntitySet="Order_Items">
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+          <ScalarProperty Name="isbn" ColumnName="isbn" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Retail_Price" ColumnName="Retail_Price" />
+          <ScalarProperty Name="Qty_sold" ColumnName="Qty_sold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Credit_card_numb" ColumnName="Credit_card_numb" />
+          <ScalarProperty Name="Credit_card_expiry" ColumnName="Credit_card_expiry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Returns">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Returns">
+        <MappingFragment StoreEntitySet="Returns">
+          <ScalarProperty Name="Return_ID" ColumnName="Return_ID" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+          <ScalarProperty Name="Retail_Price" ColumnName="Retail_Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Stocks">
+        <MappingFragment StoreEntitySet="Stocks">
+          <ScalarProperty Name="STOCK_ID" ColumnName="STOCK_ID" />
+          <ScalarProperty Name="isbn" ColumnName="isbn" />
+          <ScalarProperty Name="Author_name" ColumnName="Author_name" />
+          <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+          <ScalarProperty Name="Publisher_name" ColumnName="Publisher_name" />
+          <ScalarProperty Name="Published_year" ColumnName="Published_year" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Retail_price" ColumnName="Retail_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Suppliers">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+          <ScalarProperty Name="Supplier_name" ColumnName="Supplier_name" />
+          <ScalarProperty Name="Supplier_City" ColumnName="Supplier_City" />
+          <ScalarProperty Name="Supplier_Street" ColumnName="Supplier_Street" />
+          <ScalarProperty Name="Supplier_PCode" ColumnName="Supplier_PCode" />
+          <ScalarProperty Name="Supplier_email" ColumnName="Supplier_email" />
+          <ScalarProperty Name="Supplier_phone" ColumnName="Supplier_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BOOKSTOREModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
